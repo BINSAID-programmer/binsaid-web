@@ -27,10 +27,11 @@
         async function getPairCode() {
             const phone = document.getElementById('phone').value;
             const resultDiv = document.getElementById('result');
-            if(!phone) {
-                alert("Please enter your phone number!");
-                return;
-            }
+                    if(!phone) {
+            alert("Please enter your phone number!");
+            return;
+        }
+;
             resultDiv.innerText = "Generating code, please wait...";
             
             try {
