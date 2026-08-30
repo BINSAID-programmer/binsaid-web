@@ -16,7 +16,7 @@
 <body>
     <div class="card">
         <h2>BIN-SAID-MD</h2>
-        <p>Weka namba yako ya WhatsApp (mfano: 2557XXXXXXXX):</p>
+        <p>Enter your WhatsApp number (e.g., 2557XXXXXXXX):</p>
         <input type="text" id="phone" placeholder="255712345678">
         <br>
         <button onclick="getPairCode()">Generate Pair Code</button>
@@ -28,26 +28,24 @@
             const phone = document.getElementById('phone').value;
             const resultDiv = document.getElementById('result');
             if(!phone) {
-                alert("Tafadhali weka namba ya simu!");
+                alert("Please enter your phone number!");
                 return;
             }
-            resultDiv.innerText = "Inatengeneza code, tafadhali subiri...";
+            resultDiv.innerText = "Generating code, please wait...";
             
             try {
-                // Hapa chini tumia ile URL yako ya Render uliyoipata sasa hivi
                 const response = await fetch(`https://binsaid-backend-1.onrender.com/pair?phone=${phone}`);
-                const data = await res.json();
+                const data = await response.json();
                 
                 if(data.code) {
-                    resultDiv.innerText = `Code yako: ${data.code}`;
+                    resultDiv.innerText = `Your Code: ${data.code}`;
                 } else {
-                    resultDiv.innerText = data.error || "Imeshindikana kutengeneza code.";
+                    resultDiv.innerText = data.error || "Failed to generate code.";
                 }
             } catch(e) {
-                resultDiv.innerText = "Hitilafu imetokea kwenye mtandao.";
+                resultDiv.innerText = "Network error occurred.";
             }
         }
     </script>
 </body>
 </html>
-
